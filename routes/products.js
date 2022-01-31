@@ -25,10 +25,6 @@ router.post(
   }
 );
 
-router.get('/filter', (req, res) => {
-  res.send('filter');
-});
-
 router.get(
   '/:id',
   validatorHandler(getProductSchema, 'params'),

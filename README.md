@@ -19,3 +19,24 @@ For development environment.
 ```bash
 $ npm run dev
 ```
+
+### Dependencies
+
+- `express` web framework.
+- `cors` middleware.
+- `joi` schema validator.
+- `@faker-js/fake` mock data generator.
+- `@hapi/boom` HTTP errors handler.
+- `nodemon` for local development.
+- `prettier, eslint` for formatting and enforcing code styling.
+
+### Docker
+
+- `docker-compose up -d postgres`
+- `docker-compose up -d pgadmin`
+
+### Deployment
+
+[Heroku Docs](https://devcenter.heroku.com/articles/deploying-nodejs).
+
+Made with love <3.
