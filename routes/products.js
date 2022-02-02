@@ -18,10 +18,14 @@ router.get('/', async (req, res) => {
 router.post(
   '/',
   validatorHandler(createProductSchema, 'body'),
-  async (req, res) => {
-    const { body } = req;
-    const product = await service.create(body);
-    res.status(201).json(product);
+  async (req, res, next) => {
+    try {
+      const { body } = req;
+      const product = await service.create(body);
+      res.status(201).json(product);
+    } catch (error) {
+      next(error);
+    }
   }
 );
 
@@ -60,13 +64,16 @@ router.patch(
 router.delete(
   '/:id',
   validatorHandler(getProductSchema, 'params'),
-  async (req, res) => {
-    const {
-      body,
-      params: { id },
-    } = req;
-    const response = await service.delete(id, body);
-    res.json(response);
+  async (req, res, next) => {
+    try {
+      const {
+        params: { id },
+      } = req;
+      const response = await service.delete(id);
+      res.json(response);
+    } catch (error) {
+      next(error);
+    }
   }
 );
 

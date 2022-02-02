@@ -11,17 +11,21 @@ const router = express.Router();
 const service = new UserService();
 
 router.get('/', async (req, res) => {
-  const products = await service.find();
-  res.json(products);
+  const users = await service.find();
+  res.json(users);
 });
 
 router.post(
   '/',
   validatorHandler(createUserSchema, 'body'),
-  async (req, res) => {
-    const { body } = req;
-    const product = await service.create(body);
-    res.status(201).json(product);
+  async (req, res, next) => {
+    try {
+      const { body } = req;
+      const user = await service.create(body);
+      res.status(201).json(user);
+    } catch (error) {
+      next(error);
+    }
   }
 );
 
@@ -31,8 +35,8 @@ router.get(
   async (req, res, next) => {
     try {
       const { id } = req.params;
-      const product = await service.findOne(id);
-      res.json(product);
+      const user = await service.findOne(id);
+      res.json(user);
     } catch (error) {
       next(error);
     }
@@ -49,8 +53,8 @@ router.patch(
         body,
         params: { id },
       } = req;
-      const product = await service.update(id, body);
-      res.json(product);
+      const user = await service.update(id, body);
+      res.json(user);
     } catch (error) {
       next(error);
     }
@@ -60,13 +64,16 @@ router.patch(
 router.delete(
   '/:id',
   validatorHandler(getUserSchema, 'params'),
-  async (req, res) => {
-    const {
-      body,
-      params: { id },
-    } = req;
-    const response = await service.delete(id, body);
-    res.json(response);
+  async (req, res, next) => {
+    try {
+      const {
+        params: { id },
+      } = req;
+      const response = await service.delete(id);
+      res.json(response);
+    } catch (error) {
+      next(error);
+    }
   }
 );
 
