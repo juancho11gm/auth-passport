@@ -34,6 +34,7 @@ $ npm run dev
 
 - `docker-compose up -d postgres`
 - `docker-compose up -d pgadmin`
+- `docker-compose up -d mysql`
 
 ### Deployment
 
