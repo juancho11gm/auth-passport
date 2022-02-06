@@ -36,6 +36,12 @@ $ npm run dev
 - `docker-compose up -d pgadmin`
 - `docker-compose up -d mysql`
 
+## Sequalize Migrations
+
+Migrations help to keep track database changes.
+
+- [Docs](https://sequelize.org/master/manual/migrations.html)
+
 ### Deployment
 
 [Heroku Docs](https://devcenter.heroku.com/articles/deploying-nodejs).
