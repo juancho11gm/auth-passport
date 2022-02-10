@@ -1,5 +1,6 @@
 const boom = require('@hapi/boom');
 const { models } = require('../libs/sequelize');
+
 class UserService {
   constructor() {}
 
@@ -9,7 +10,10 @@ class UserService {
   }
 
   async find() {
-    const res = await models.User.findAll();
+    const res = await models.User.findAll({
+      // return nested customers, otherwise it will return the customer id
+      include: ['customer']
+    });
     return res;
   }
 
