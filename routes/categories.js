@@ -10,9 +10,13 @@ const {
 const router = express.Router();
 const service = new CategoryService();
 
-router.get('/', async (req, res) => {
-  const users = await service.find();
-  res.json(users);
+router.get('/', async (req, res, next) => {
+  try {
+    const users = await service.find();
+    res.json(users);
+  } catch (error) {
+    next(error);
+  }
 });
 
 router.post(

@@ -10,9 +10,13 @@ const {
 const router = express.Router();
 const service = new CustomerService();
 
-router.get('/', async (req, res) => {
-  const customers = await service.find();
-  res.json(customers);
+router.get('/', async (req, res, next) => {
+  try {
+    const customers = await service.find();
+    res.json(customers);
+  } catch (error) {
+    next(error);
+  }
 });
 
 router.post(

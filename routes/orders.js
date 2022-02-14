@@ -5,14 +5,19 @@ const {
   createOrderSchema,
   updateOrderSchema,
   getOrderSchema,
+  addItemSchema
 } = require('../schemas/order');
 
 const router = express.Router();
 const service = new OrderService();
 
-router.get('/', async (req, res) => {
-  const users = await service.find();
-  res.json(users);
+router.get('/', async (req, res, next) => {
+  try {
+    const orders = await service.find();
+    res.json(orders);
+  } catch (error) {
+    next(error);
+  }
 });
 
 router.post(
@@ -21,8 +26,8 @@ router.post(
   async (req, res, next) => {
     try {
       const { body } = req;
-      const user = await service.create(body);
-      res.status(201).json(user);
+      const order = await service.create(body);
+      res.status(201).json(order);
     } catch (error) {
       next(error);
     }
@@ -35,8 +40,8 @@ router.get(
   async (req, res, next) => {
     try {
       const { id } = req.params;
-      const user = await service.findOne(id);
-      res.json(user);
+      const order = await service.findOne(id);
+      res.json(order);
     } catch (error) {
       next(error);
     }
@@ -53,8 +58,8 @@ router.patch(
         body,
         params: { id },
       } = req;
-      const user = await service.update(id, body);
-      res.json(user);
+      const order = await service.update(id, body);
+      res.json(order);
     } catch (error) {
       next(error);
     }
@@ -71,6 +76,20 @@ router.delete(
       } = req;
       const response = await service.delete(id);
       res.json(response);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+router.post(
+  '/add-item',
+  validatorHandler(addItemSchema, 'body'),
+  async (req, res, next) => {
+    try {
+      const { body } = req;
+      const order = await service.addItem(body);
+      res.status(201).json(order);
     } catch (error) {
       next(error);
     }

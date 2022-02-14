@@ -44,6 +44,17 @@ Migrations help to keep track database changes.
 
 ### Deployment
 
-[Heroku Docs](https://devcenter.heroku.com/articles/deploying-nodejs).
+```bash
+  git push heroku main
+```
+
+- Run migrations in production
+
+```bash
+  heroku run npm run migrations:run
+```
+
+- [Heroku + Postgres](https://devcenter.heroku.com/articles/heroku-postgresql#provisioning-heroku-postgres).
+- [Heroku Docs](https://devcenter.heroku.com/articles/deploying-nodejs).
 
 Made with love <3.

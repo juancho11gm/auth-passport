@@ -34,15 +34,15 @@
     "mysql2": "^2.3.3",
     "pg": "^8.7.1",
     "pg-hstore": "^2.3.4",
-    "sequelize": "^6.15.0"
+    "sequelize": "^6.15.0",
+    "sequelize-cli": "^6.4.1"
   },
   "devDependencies": {
     "eslint": "^8.7.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "nodemon": "^2.0.15",
-    "prettier": "^2.5.1",
-    "sequelize-cli": "^6.4.1"
+    "prettier": "^2.5.1"
   },
   "engines": {
     "node": "16.x"
