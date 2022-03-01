@@ -1,12 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const routerAPI = require('./routes');
-const {
-  logErrors,
-  errorHandler,
-  boomHandler,
-  ormErrorHandler,
-} = require('./middlewares/error');
+const { logErrors, errorHandler, boomHandler, ormErrorHandler } = require('./middlewares/error');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -21,9 +16,11 @@ const corsOptions = {
     } else {
       callback(new Error('Unauthorized'));
     }
-  },
+  }
 };
 app.use(cors(corsOptions));
+
+require('./utils/auth');
 
 routerAPI(app);
 

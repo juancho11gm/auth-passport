@@ -9,7 +9,7 @@ function errorHandler(err, req, res, next) {
   // status to be updated
   res.status(500).json({
     message: err.message,
-    stack: err.stack,
+    stack: err.stack
   });
 }
 
@@ -26,7 +26,7 @@ function ormErrorHandler(err, req, res, next) {
     res.status(409).json({
       statusCode: 409,
       message: err.name,
-      errors: err.errors,
+      errors: err.errors
     });
   }
   next(err);

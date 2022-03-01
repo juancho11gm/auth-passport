@@ -22,11 +22,11 @@ const updateCustomerSchema = joi.object({
 });
 
 const getCustomerSchema = joi.object({
-  id: id.required(),
+  id: id.required()
 });
 
 module.exports = {
   createCustomerSchema,
   updateCustomerSchema,
-  getCustomerSchema,
+  getCustomerSchema
 };

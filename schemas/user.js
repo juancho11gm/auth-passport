@@ -8,20 +8,20 @@ const role = joi.string().min(5);
 const createUserSchema = joi.object({
   email: email.required(),
   password: password.required(),
-  role: role.required(),
+  role: role.required()
 });
 
 const updateUserSchema = joi.object({
   email,
-  role,
+  role
 });
 
 const getUserSchema = joi.object({
-  id: id.required(),
+  id: id.required()
 });
 
 module.exports = {
   createUserSchema,
   updateUserSchema,
-  getUserSchema,
+  getUserSchema
 };

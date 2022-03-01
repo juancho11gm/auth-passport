@@ -6,6 +6,7 @@ class UserService {
 
   async create(data) {
     const newUser = await models.User.create(data);
+    delete newUser.dataValues.password;
     return newUser;
   }
 
@@ -13,6 +14,13 @@ class UserService {
     const res = await models.User.findAll({
       // return nested customers, otherwise it will return the customer id
       include: ['customer']
+    });
+    return res;
+  }
+
+  async findByEmail(email) {
+    const res = await models.User.findOne({
+      where: { email }
     });
     return res;
   }

@@ -1,4 +1,5 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
+const bcrypt = require('bcrypt');
 
 const USER_TABLE = 'users';
 const UserSchema = {
@@ -6,16 +7,16 @@ const UserSchema = {
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
-    type: DataTypes.INTEGER,
+    type: DataTypes.INTEGER
   },
   email: {
     allowNull: false,
     type: DataTypes.STRING,
-    unique: true,
+    unique: true
   },
   password: {
     allowNull: false,
-    type: DataTypes.STRING,
+    type: DataTypes.STRING
   },
   role: {
     allowNull: false,
@@ -26,8 +27,8 @@ const UserSchema = {
     allowNull: false,
     type: DataTypes.DATE,
     field: 'create_at',
-    defaultValue: Sequelize.NOW,
-  },
+    defaultValue: Sequelize.NOW
+  }
 };
 
 class User extends Model {
@@ -35,7 +36,7 @@ class User extends Model {
     this.hasOne(models.Customer, {
       as: 'customer',
       foreignKey: 'userId'
-    })
+    });
   }
 
   static config(sequelize) {
@@ -44,6 +45,12 @@ class User extends Model {
       tableName: USER_TABLE,
       modelName: 'User',
       timestamps: false,
+      hooks: {
+        beforeCreate: async (user) => {
+          const password = await bcrypt.hash(user.password, 10);
+          user.password = password;
+        }
+      }
     };
   }
 }
@@ -51,5 +58,5 @@ class User extends Model {
 module.exports = {
   USER_TABLE,
   UserSchema,
-  User,
+  User
 };
