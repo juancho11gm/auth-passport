@@ -25,26 +25,24 @@ const OrderSchema = {
     allowNull: false,
     type: DataTypes.DATE,
     field: 'created_at',
-    defaultValue: Sequelize.NOW,
+    defaultValue: Sequelize.NOW
   },
   total: {
     // this data is not saved in the DB
     type: DataTypes.VIRTUAL,
     get() {
-      if(this.items.length > 0) {
-        return this.items.reduce((total, item) => total + (item.price * item.OrderProduct.amount), 0)
+      if (this.items && this.items.length > 0) {
+        return this.items.reduce((total, item) => total + item.price * item.OrderProduct.amount, 0);
       }
       return 0;
     }
   }
-}
-
+};
 
 class Order extends Model {
-
   static associate(models) {
     this.belongsTo(models.Customer, {
-      as: 'customer',
+      as: 'customer'
     });
     this.belongsToMany(models.Product, {
       as: 'items',
@@ -60,7 +58,7 @@ class Order extends Model {
       tableName: ORDER_TABLE,
       modelName: 'Order',
       timestamps: false
-    }
+    };
   }
 }
 

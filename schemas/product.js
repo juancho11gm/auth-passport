@@ -13,7 +13,6 @@ const price_max = joi.number().integer().min(10);
 const limit = joi.number().integer();
 const offset = joi.number().integer();
 
-
 const createProductSchema = joi.object({
   name: name.required(),
   price: price.required(),
@@ -31,7 +30,7 @@ const updateProductSchema = joi.object({
 });
 
 const getProductSchema = joi.object({
-  id: id.required(),
+  id: id.required()
 });
 
 const queryProductSchema = joi.object({

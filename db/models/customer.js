@@ -7,11 +7,11 @@ const CustomerSchema = {
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
-    type: DataTypes.INTEGER,
+    type: DataTypes.INTEGER
   },
   name: {
     allowNull: false,
-    type: DataTypes.STRING,
+    type: DataTypes.STRING
   },
   lastname: {
     allowNull: false,
@@ -26,7 +26,7 @@ const CustomerSchema = {
     allowNull: false,
     type: DataTypes.DATE,
     field: 'create_at',
-    defaultValue: Sequelize.NOW,
+    defaultValue: Sequelize.NOW
   },
   userId: {
     field: 'user_id',
@@ -53,7 +53,7 @@ class Customer extends Model {
       sequelize,
       tableName: CUSTOMER_TABLE,
       modelName: 'Customer',
-      timestamps: false,
+      timestamps: false
     };
   }
 }
@@ -61,5 +61,5 @@ class Customer extends Model {
 module.exports = {
   CUSTOMER_TABLE,
   CustomerSchema,
-  Customer,
+  Customer
 };

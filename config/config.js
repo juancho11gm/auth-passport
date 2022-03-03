@@ -12,7 +12,9 @@ const config = {
   isProd: process.env.NODE_ENV === 'production',
   dbUrl: process.env.DATABASE_URL,
   jwtSecret: process.env.JWT_SECRET,
-  apiKey: process.env.API_KEY
+  apiKey: process.env.API_KEY,
+  gmPswd: process.env.GM_PSWD,
+  email: process.env.EMAIL
 };
 
 module.exports = {
