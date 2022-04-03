@@ -28,6 +28,7 @@ $ npm run dev
 - `@faker-js/fake` mock data generator.
 - `@hapi/boom` HTTP errors handler.
 - `nodemon` for local development.
+- `passport` for authorization and authentication.
 - `sequelize` as Node.js ORM for Postgres & MySQL.
 - `prettier, eslint` for formatting and enforcing code styling.
 
